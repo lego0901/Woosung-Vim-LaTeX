@@ -1,0 +1,264 @@
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""" FOR VIM """""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au FileType tex let TEXMF = "~/.texmf/tex/latex/"
+
+"compiliation shortcuts and indentations
+au FileType tex nmap <F3> :w<CR> :! cd $(dirname %) && pdflatex $(basename %) > /tmp/.o.out<CR>
+au FileType tex nmap <C-F3> :w<CR> :! gnome-terminal -x sh -c 'cd $(dirname %) && pdflatex $(basename %) && exit; exec bash'<CR>
+au FileType tex nmap <F4> :! gopen %<.pdf &<CR>
+au FileType tex imap <F3> <Esc>:w<CR> :! cd $(dirname %) && pdflatex $(basename %) > /tmp/.o.out<CR>
+au FileType tex imap <C-F3> <Esc>:w<CR> :! gnome-terminal -x sh -c 'cd $(dirname %) && pdflatex $(basename %) && exit; exec bash'<CR>
+au FileType tex imap <F4> <Esc>:! gopen %<.pdf &<CR><CR>
+au FileType tex nmap <F5> :bo 40vs /tmp/.o.out<CR>
+au FileType tex imap <F5> <Esc>:bo 40vs /tmp/.o.out<CR>
+au FileType tex set indentexpr&
+au FileType tex set nocindent
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""" VIM SETTING FOR LATEX USER """""""""""""""""""""""""""""""""""
+"""" MADE BY WOOSUNG SONG """""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""" BASIC SETTINGS """""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Cursor movement: via "<<-->>" symbol
+" Ctrl + j : move to next <<-->> and remove <<-->>
+" Ctrl + k : write <<-->> on the current location
+au FileType tex imap <C-j> <Esc>/<<-->><CR>:nohl<CR>i<Del><Del><Del><Del><Del><Del>
+au FileType tex nmap <C-j> /<<-->><CR>:nohl<CR>i<Del><Del><Del><Del><Del><Del>
+au FileType tex imap <C-k> <<-->>
+au FileType tex nmap <C-k> a<<-->><Esc>
+
+
+" Document Definition
+" \Document : prints \begin{document} ... \end{document}
+au FileType tex imap <leader>Document \begin{document}<CR><CR><CR><CR>\end{document}<Esc>2ka
+au FileType tex nmap <leader>Document a\begin{document}<CR><CR><CR><CR>\end{document}<Esc>2ka
+
+
+" Document Information
+" \Info : title, author, date
+" \MoreInfo : (FOR BEAMER) title, subtitle, author, date, institute
+au FileType tex imap <leader>Info \ti <Backspace>tle{}<CR>\author{<<-->>}<CR>\date{<<-->>}<CR><<-->><Esc>3k$i
+au FileType tex imap <leader>Moreinfo \ti <Backspace>tle{}<CR>\subtitle{<<-->>}<CR>\author{<<-->>}<CR>\date{<<-->>}<CR>\institute{<<-->>}<CR><<-->><Esc>5k$i
+au FileType tex nmap <leader>info a\ti <Backspace>tle{}<CR>\author{<<-->>}<CR>\date{<<-->>}<CR><<-->><Esc>3k$i
+au FileType tex nmap <leader>Moreinfo a\ti <Backspace>tle{}<CR>\subtitle{<<-->>}<CR>\author{<<-->>}<CR>\date{<<-->>}<CR>\institute{<<-->>}<CR><<-->><Esc>5k$i
+
+
+" Packages, Commands
+" \Package, \Newcomm, \Renewcomm
+au FileType tex imap <leader>Package \usepackage{}<Esc>i
+au FileType tex imap <leader>Newcomm \newcommand{}{<<-->>}<Esc>8hi
+au FileType tex imap <leader>Renewcomm \renewcommand{}{<<-->>}<Esc>8hi
+au FileType tex nmap <leader>Package a\usepackage{}<Esc>i
+au FileType tex nmap <leader>Newcomm a\newcommand{}{<<-->>}<Esc>8hi
+au FileType tex nmap <leader>Renewcomm a\renewcommand{}{<<-->>}<Esc>8hi
+
+
+" Chapter/Section Definition
+" \Chap : chapter
+" \Sec, \SSec, \SSSec : section, subsection, subsubsection
+" \Chap*, \Sec*, \SSec*, \SSSec* : nonumber
+au FileType tex imap <leader>Chap \chapter{}<<-->><Esc>6hi
+au FileType tex imap <leader>Sec \section{}<<-->><Esc>6hi
+au FileType tex imap <leader>SSec \subsection{}<<-->><Esc>6hi
+au FileType tex imap <leader>SSSec \subsubsection{}<<-->><Esc>6hi
+au FileType tex imap <leader>Chap* \chapter*{}<<-->><Esc>6hi
+au FileType tex imap <leader>Sec* \section*{}<<-->><Esc>6hi
+au FileType tex imap <leader>SSec* \subsection*{}<<-->><Esc>6hi
+au FileType tex imap <leader>SSSec* \subsubsection*{}<<-->><Esc>6hi
+au FileType tex nmap <leader>Chap a\chapter{}<<-->><Esc>6hi
+au FileType tex nmap <leader>Sec a\section{}<<-->><Esc>6hi
+au FileType tex nmap <leader>SSec a\subsection{}<<-->><Esc>6hi
+au FileType tex nmap <leader>SSSec a\subsubsection{}<<-->><Esc>6hi
+au FileType tex nmap <leader>Chap* a\chapter*{}<<-->><Esc>6hi
+au FileType tex nmap <leader>Sec* a\section*{}<<-->><Esc>6hi
+au FileType tex nmap <leader>SSec* a\subsection*{}<<-->><Esc>6hi
+au FileType tex nmap <leader>SSSec* a\subsubsection*{}<<-->><Esc>6hi
+
+
+" Text Emphasizing
+" \tbf : bold, \tit : italic, \ttt : monospace
+" \tsc : scientific, \txt : text
+au FileType tex imap <leader>tbf \textbf{}<<-->><Esc>6hi
+au FileType tex imap <leader>tit \textit{}<<-->><Esc>6hi
+au FileType tex imap <leader>ttt \texttt{}<<-->><Esc>6hi
+au FileType tex imap <leader>tsc \textsc{}<<-->><Esc>6hi
+au FileType tex imap <leader>txt \text{}<<-->><Esc>6hi
+
+
+" Enumerate, Itemize
+" \Enumerate : 1) 2) 3)
+" \Enumeratea : a) b) c)
+" \Enumeratei : i) ii) iii)
+" \EnumerateA, \EnumerateI : bold font
+" \Itemize
+au FileType tex imap <leader>Enumerate \begin{enumerate}<CR>\end{enumerate}<<-->><Esc>O<Tab>\item<Space>
+au FileType tex imap <leader>Enumeratea \begin{enumerate}[label=\alph*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex imap <leader>Enumeratei \begin{enumerate}[label=\roman*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex imap <leader>EnumerateA \begin{enumerate}[label=\bfseries\alph*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex imap <leader>EnumerateI \begin{enumerate}[label=\bfseries\roman*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex imap <leader>Itemize \begin{itemize}<CR>\end{itemize}<<-->><Esc>O<Tab>\item
+au FileType tex nmap <leader>Enumerate a\begin{enumerate}<CR>\end{enumerate}<<-->><Esc>O<Tab>\item<Space>
+au FileType tex nmap <leader>Enumeratea a\begin{enumerate}[label=\alph*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex nmap <leader>Enumeratei a\begin{enumerate}[label=\roman*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex nmap <leader>EnumerateA a\begin{enumerate}[label=\bfseries\alph*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex nmap <leader>EnumerateI a\begin{enumerate}[label=\bfseries\roman*)]<CR>\end{enumerate}<<-->><Esc>O<Tab>\item
+au FileType tex nmap <leader>Itemize a\begin{itemize}<CR>\end{itemize}<<-->><Esc>O<Tab>\item
+
+
+" Figure
+" \Figure : a common setting to put a figure.
+au FileType tex imap <leader>Figure \begin{figure}[!htb]<CR><Tab>\centering<CR>\includegraphics[width=.\textwidth]{<<-->>}<CR>\caption{<<-->>}<CR><Backspace>\end{figure}<<-->><Esc>2k11li
+au FileType tex nmap <leader>Figure a\begin{figure}[!htb]<CR><Tab>\centering<CR>\includegraphics[width=.\textwidth]{<<-->>}<CR>\caption{<<-->>}<CR><Backspace>\end{figure}<<-->><Esc>2k11li
+
+
+" Table
+" \Table : simple table (common setting)
+" \Tabular : high level setting for table (e.g., with caption)
+au FileType tex imap <leader>Table \begin{table}[h]<CR>\end{table}<<-->><Esc>O<Tab>
+au FileType tex imap <leader>Tabular \begin{tabular}{}<CR>\end{tabular}<CR>\caption{<<-->>}<Esc>2ka
+au FileType tex nmap <leader>Table a\begin{table}[h]<CR>\end{table}<<-->><Esc>O<Tab>
+au FileType tex nmap <leader>Tabular a\begin{tabular}{}<CR>\end{tabular}<CR>\caption{<<-->>}<Esc>2ka
+
+" Center
+" \Center : \begin{center} .. \end{center}. Align text in center.
+au FileType tex imap <leader>Center \begin{center}<CR>\end{center}<<-->><Esc>O
+au FileType tex nmap <leader>Center a\begin{center}<CR>\end{center}<<-->><Esc>O
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""" MATH SETTINGS """"""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Align and Array
+" \Align : similar to $$..$$, support indent aligning.
+" \Array : array in math mode
+au FileType tex imap <leader>Align \begin{align*}<CR>\end{align*}<<-->><Esc>O
+au FileType tex imap <leader>Array \begin{array}{}<CR><Tab><<-->><CR><BackSpace>\end{array}<<-->><Esc>2k$i
+au FileType tex nmap <leader>Align a\begin{align*}<CR>\end{align*}<<-->><Esc>O
+au FileType tex nmap <leader>Array a\begin{array}{}<CR><Tab><<-->><CR><BackSpace>\end{array}<<-->><Esc>2k$i
+
+
+" Theorems, Definitions (COMPATIBLE ONLY TO MY VIM STYLE)
+" \Thm, \Lem, \Prop, \Coro, \Def, \Ex, \Prob, \Remark, \Proof
+au FileType tex imap <leader>Thm \begin{theorem}<CR>\end{theorem}<<-->><Esc>O
+au FileType tex imap <leader>Lem \begin{lemma}<CR>\end{lemma}<<-->><Esc>O
+au FileType tex imap <leader>Prop \begin{proposition}<CR>\end{proposition}<<-->><Esc>O
+au FileType tex imap <leader>Coro \begin{corollary}<CR>\end{corollary}<<-->><Esc>O
+au FileType tex imap <leader>Def \begin{definition}<CR>\end{definition}<<-->><Esc>O
+au FileType tex imap <leader>Ex \begin{example}<CR>\end{example}<<-->><Esc>O
+au FileType tex imap <leader>Prob \begin{problem}<CR>\end{problem}<<-->><Esc>O
+au FileType tex imap <leader>Remark \begin{remark}<CR>\end{remark}<<-->><Esc>O
+au FileType tex imap <leader>Proof \begin{proof}<CR>\end{proof}<<-->><Esc>O
+au FileType tex nmap <leader>Thm a\begin{theorem}<CR>\end{theorem}<<-->><Esc>O
+au FileType tex nmap <leader>Lem a\begin{lemma}<CR>\end{lemma}<<-->><Esc>O
+au FileType tex nmap <leader>Prop a\begin{proposition}<CR>\end{proposition}<<-->><Esc>O
+au FileType tex nmap <leader>Coro a\begin{corollary}<CR>\end{corollary}<<-->><Esc>O
+au FileType tex nmap <leader>Def a\begin{definition}<CR>\end{definition}<<-->><Esc>O
+au FileType tex nmap <leader>Ex a\begin{example}<CR>\end{example}<<-->><Esc>O
+au FileType tex nmap <leader>Prob a\begin{problem}<CR>\end{problem}<<-->><Esc>O
+au FileType tex nmap <leader>Remark a\begin{remark}<CR>\end{remark}<<-->><Esc>O
+au FileType tex nmap <leader>Proof a\begin{proof}<CR>\end{proof}<<-->><Esc>O
+
+
+" Braces
+" \Brace(, \Brace{, \Brace[, \Brace. : (), {}, [], {
+" \Bracec, \Bracef : ceil, floor
+au FileType tex imap <leader>Brace( \left(  \right)<<-->><Esc>13hi
+au FileType tex imap <leader>Brace{ \left\{  \right\}<<-->><Esc>14hi
+au FileType tex imap <leader>Brace[ \left[  \right]<<-->><Esc>13hi
+au FileType tex imap <leader>Brace. \left\{  \right.<<-->><Esc>13hi
+au FileType tex imap <leader>Bracec \lceil  \rceil<<-->><Esc>12hi
+au FileType tex imap <leader>Bracef \lfloor  \rfloor<<-->><Esc>13hi
+au FileType tex nmap <leader>Brace( a\left(  \right)<<-->><Esc>13hi
+au FileType tex nmap <leader>Brace{ a\left\{  \right\}<<-->><Esc>14hi
+au FileType tex nmap <leader>Brace[ a\left[  \right]<<-->><Esc>13hi
+au FileType tex nmap <leader>Brace. a\left\{  \right.<<-->><Esc>13hi
+au FileType tex nmap <leader>Bracec a\lceil  \rceil<<-->><Esc>12hi
+au FileType tex nmap <leader>Bracef a\lfloor  \rfloor<<-->><Esc>13hi
+
+
+" Common Mathematical Shortcuts
+" \frac{, \sum_, \prod_, \disp, ^-1
+" \bigcup_, \bigcap_, \bigcup^, \bigcap^
+au FileType tex imap <leader>frac{ \frac{}{<<-->>} <<-->><Esc>15hi
+au FileType tex imap <leader>sum_ \sum_{}^{<<-->>} <<-->><Esc>16hi
+au FileType tex imap <leader>prod_ \prod_{}^{<<-->>} <<-->><Esc>16hi
+au FileType tex imap <leader>lim_ \lim_{} <<-->><Esc>7hi
+au FileType tex imap <leader>disp \displaystyle
+au FileType tex imap ^-1 ^{-1}
+au FileType tex imap <leader>bigcup_ \bigcup_{} <<-->><Esc>7hi
+au FileType tex imap <leader>bigcap_ \bigcap_{} <<-->><Esc>7hi
+au FileType tex imap <leader>bigcup^ \big <Backspace>cup_{}^{<<-->>} <<-->><Esc>16hi
+au FileType tex imap <leader>bigcap^ \big <Backspace>cap_{}^{<<-->>} <<-->><Esc>16hi
+au FileType tex nmap <leader>frac{ a\frac{}{<<-->>} <<-->><Esc>15hi
+au FileType tex nmap <leader>sum_ a\sum_{}^{<<-->>} <<-->><Esc>16hi
+au FileType tex nmap <leader>prod_ a\prod_{}^{<<-->>} <<-->><Esc>16hi
+au FileType tex nmap <leader>lim_ a\lim_{} <<-->><Esc>7hi
+au FileType tex nmap <leader>disp a\displaystyle
+au FileType tex nmap <leader>bigcup_ a\bigcup_{} <<-->><Esc>7hi
+au FileType tex nmap <leader>bigcap_ a\bigcap_{} <<-->><Esc>7hi
+au FileType tex nmap <leader>bigcup^ a\big <Backspace>cup_{}^{<<-->>} <<-->><Esc>16hi
+au FileType tex nmap <leader>bigcap^ a\big <Backspace>cap_{}^{<<-->>} <<-->><Esc>16hi
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""" BEAMER SETTINGS """""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Document Information
+au FileType tex imap <leader>Beamerdocument \begin{document}<CR><CR>\framE<Backspace>e{\maketitle}<CR><CR><CR><CR>\end{document}<Esc>2ka
+au FileType tex nmap <leader>Beamerdocument a\begin{document}<CR><CR>\framE<Backspace>e{\maketitle}<CR><CR><CR><CR>\end{document}<Esc>2ka
+
+
+" Frames
+au FileType tex imap <leader>Frame \begin{frame}{}<CR><Tab><<-->><CR><Backspace>\end{frame}<<-->><Esc>2k$i
+au FileType tex imap <leader>Framet \begin{frame}{}<CR><Tab>\frametitle{<<-->>}<CR><<-->><CR><Backspace>\end{frame}<<-->><Esc>3k$i
+au FileType tex nmap <leader>Frame a\begin{frame}{}<CR><Tab><<-->><CR><Backspace>\end{frame}<<-->><Esc>2k$i
+au FileType tex nmap <leader>Framet a\begin{frame}{}<CR><Tab>\frametitle{<<-->>}<CR><<-->><CR><Backspace>\end{frame}<<-->><Esc>3k$i
+
+
+" Blocks
+au FileType tex imap <leader>Block \begin{block}{}<CR><Tab><<-->><CR><Backspace>\end{block}<<-->><Esc>2k$i
+au FileType tex imap <leader>Blocka \begin{alertblock}{}<CR><Tab><<-->><CR><Backspace>\end{alertblock}<<-->><Esc>2k$i
+au FileType tex imap <leader>Blocke \begin{exampleblock}{}<CR><Tab><<-->><CR><Backspace>\end{exampleblock}<<-->><Esc>2k$i
+au FileType tex imap <leader>Block \begin{block}{}<CR><Tab><<-->><CR><Backspace>\end{block}<<-->><Esc>2k$i
+au FileType tex nmap <leader>Blocka a\begin{alertblock}{}<CR><Tab><<-->><CR><Backspace>\end{alertblock}<<-->><Esc>2k$i
+au FileType tex nmap <leader>Blocke a\begin{exampleblock}{}<CR><Tab><<-->><CR><Backspace>\end{exampleblock}<<-->><Esc>2k$i
+
+
+" Alert
+au FileType tex imap <leader>AA \alert{}<<-->><Esc>6hi
+au FileType tex nmap <leader>AA a\alert{}<<-->><Esc>6hi
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""" CODE SETTINGS """"""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Verbatim (COMPATIBLE ONLY TO MY VIM STYLE)
+" \NVerbatim : load a common verbatim layout
+" \Verbatim : with numbering
+au FileType tex imap <leader>Verbatim \begin{Verbatim}[tabsize=4,xleftmargin=2em]<CR>\end{Verbatim}<<-->><Esc>O
+au FileType tex imap <leader>NVerbatim \begin{Verbatim}[numbers=left,tabsize=4,xleftmargin=2em]<CR>\end{Verbatim}<<-->><Esc>O
+au FileType tex nmap <leader>Verbatim a\begin{Verbatim}[tabsize=4,xleftmargin=2em]<CR>\end{Verbatim}<<-->><Esc>O
+au FileType tex nmap <leader>NVerbatim a\begin{Verbatim}[numbers=left,tabsize=4,xleftmargin=2em]<CR>\end{Verbatim}<<-->><Esc>O
+
+
+
