@@ -1,0 +1,35 @@
+
+% Geometry
+\usepackage[margin=1in, bottom=1in]{geometry}
+
+% Essential Packages
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{fancyvrb}
+\usepackage{lipsum}
+\usepackage{woosung_math}
+
+% Referencing Style
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 0.3ex}
+}
+
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep}
+
+% Custom Shortcuts
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\benuma}{\begin{enumerate}[label=\alph*), noitemsep]}
+\newcommand{\benumA}{\begin{enumerate}[label=\bfseries\alph*), noitemsep]}
+\newcommand{\benumi}{\begin{enumerate}[label=\roman*), noitemsep]}
+\newcommand{\benumI}{\begin{enumerate}[label=\bfseries\roman*), noitemsep]}
+\newcommand{\leftsp}{\mbox{}\quad}
+

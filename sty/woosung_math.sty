@@ -1,0 +1,71 @@
+
+\usepackage{amsmath, amssymb, amsthm}
+
+% Theorem Styles
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% Definition Styles
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{problem}{Problem}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+% Mathematical Shortcuts
+\DeclareRobustCommand\iff{\;\leftrightarrow\;}
+\DeclareRobustCommand\imp{\;\rightarrow\;}
+\DeclareRobustCommand\imq{\;\leftarrow\;}
+% Logic
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\power}{\mathcal P}
+\newcommand{\comp}{\overline}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+% Analysis
+\newcommand{\ep}{\epsilon}
+\newcommand{\dt}{\delta}
+\renewcommand{\liminf}[1]{\lim_{#1 \ra \infty}} % Excluded when using liminf
+\newcommand{\limninf}[1]{\lim_{#1 \ra -\infty}}
+\newcommand{\limz}[1]{\lim_{#1 \ra 0}}
+\newcommand{\limzp}[1]{\lim_{#1 \ra 0+}}
+\newcommand{\limzn}[1]{\lim_{#1 \ra 0-}}
+\newcommand{\lima}[2]{\lim_{#1 \ra #2}}
+\newcommand{\limap}[2]{\lim_{#1 \ra #2+}}
+\newcommand{\liman}[2]{\lim_{#1 \ra #2-}}
+\newcommand{\sumxn}[2]{\sum_{#1 = 1}^{#2}}
+\newcommand{\sumxsn}[3]{\sum_{#1 = #2}^{#3}}
+\newcommand{\sumxinf}[1]{\sum_{#1 = 1}^\infty}
+\newcommand{\sumxzinf}[1]{\sum_{#1 = 0}^\infty}
+\newcommand{\sumxsinf}[2]{\sum_{#1 = #2}^\infty}
+\newcommand{\prodxn}[2]{\prod_{#1 = 1}^{#2}}
+\newcommand{\prodxsn}[3]{\prod_{#1 = #2}^{#3}}
+\newcommand{\prodxinf}[1]{\prod_{#1 = 1}^\infty}
+\newcommand{\prodxzinf}[1]{\prod_{#1 = 0}^\infty}
+\newcommand{\prodxsinf}[2]{\prod_{#1 = #2}^\infty}
+\newcommand{\inv}{^{-1}}
+\newcommand{\mb}{\mathbf}
+% Linear Algebra
+\renewcommand{\vec}{\mathbf}
+% Number Theory
+\newcommand{\divs}{\operatorname{|}}
+% Topology
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Int}{\operatorname{Int}}
+
+% Description Shortcuts
+\newcommand{\ie}{\textit{i.e., }}
+\newcommand{\eg}{\textit{e.g., }}
+\newcommand{\base}{\textbf{(Base Step) }}
+\newcommand{\indu}{\textbf{(Induction) }}
+\newcommand{\stri}{\textbf{(Strong Induction) }}
+\newcommand{\recs}{\textbf{(Recursive Step) }}
+
+% Numbering on \begin{align*} .. \end{align*}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
