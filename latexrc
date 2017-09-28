@@ -14,6 +14,11 @@ au FileType tex imap <C-F3> <Esc>:w<CR> :! gnome-terminal -x sh -c 'cd $(dirname
 au FileType tex imap <F4> <Esc>:! gopen %<.pdf &<CR><CR>
 au FileType tex nmap <F5> :bo 40vs /tmp/.o.out<CR>
 au FileType tex imap <F5> <Esc>:bo 40vs /tmp/.o.out<CR>
+function! Base()
+	if (&ft == "tex")
+		execute "!cp $HOME/.vim/latexbase.tex %"
+	endif
+endfunction
 au FileType tex set indentexpr&
 au FileType tex set nocindent
 
