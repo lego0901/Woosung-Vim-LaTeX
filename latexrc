@@ -123,12 +123,12 @@ au FileType tex nmap <leader>Figure a\begin{figure}[!htb]<CR><Tab>\centering<CR>
 
 
 " Table
-" \Table : simple table (common setting)
-" \Tabular : high level setting for table (e.g., with caption)
-au FileType tex imap <leader>Table \begin{table}[h]<CR>\end{table}<<-->><Esc>O<Tab>
-au FileType tex imap <leader>Tabular \begin{tabular}{}<CR>\end{tabular}<CR>\caption{<<-->>}<Esc>2ka
-au FileType tex nmap <leader>Table a\begin{table}[h]<CR>\end{table}<<-->><Esc>O<Tab>
-au FileType tex nmap <leader>Tabular a\begin{tabular}{}<CR>\end{tabular}<CR>\caption{<<-->>}<Esc>2ka
+" \Tabular : simple table (common setting)
+" \Table : high level setting for table (e.g., with caption)
+au FileType tex imap <leader>Tabular \begin{tabular}{}<CR>\end{tabular}<<-->><Esc>O<Tab><<-->><Esc>k$i
+au FileType tex imap <leader>Table \begin{table}[h]<CR>\end{table}<<-->><Esc>O<Tab>\centering<CR>\caption{<<-->>}<Esc>O
+au FileType tex nmap <leader>Tabular a\begin{tabular}{}<CR>\end{tabular}<<-->><Esc>O<Tab><<-->><Esc>k$i
+au FileType tex nmap <leader>Table a\begin{table}[h]<CR>\end{table}<<-->><Esc>O<Tab>\centering<CR>\caption{<<-->>}<Esc>O
 
 " Center
 " \Center : \begin{center} .. \end{center}. Align text in center.
