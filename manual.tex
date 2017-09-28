@@ -203,6 +203,7 @@ $ sudo texhash
 		&= \frac{n(n+1)}{2} \numberthis
 \end{align*}
 오직 두 번째 줄에서만 \Verb+\numberthis+ 처리를 해줬기 때문에 수식 번호가 매겨진 것입니다.
+이는 \\ \Verb+\usepackage{woosung_math}+ 를 넣어줘야 사용할 수 있습니다.
 
 
 \section{.latexrc 단축키 설명}
@@ -291,7 +292,7 @@ $$ sum_{i=0}^{n} | $$
 	\item \textbf{\bs ttt 입력}: 모노스페이스 텍스트 입력 레이아웃을 적습니다. \texttt{(Text)}
 	\item \textit{\bs tsc 입력}: Scientific 텍스트 입력 레이아웃을 적습니다. \textsc{(Text)}
 	\item \textit{\bs txt 입력}: 플레인 텍스트 입력 레이아웃을 적습니다. 수식 모드에서
-		플레인 텍스트로 적을 때 주로 사용됩니다.
+		플레인 텍스트로 적을 때 주로 사용됩니다. (\Verb+\text{<<-->>}<<-->>+)
 \end{itemize}
 
 
@@ -402,12 +403,12 @@ $$ sum_{i=0}^{n} | $$
 \begin{Verbatim}[tabsize=4,xleftmargin=2em]
 \begin{theorem}
 	Let $X$ be a metrizable space and $A \subset X$.
-	If $x \in \cl A$, then there is a sequence $x_n$ on $A$ converges to $x$.
+	If $x \in \Cl A$, then there is a sequence $x_n$ on $A$ converges to $x$.
 \end{theorem} 
 \begin{proof}
-	Assume $x \in \cl A$.
+	Assume $x \in \Cl A$.
 	Note that $B(x, 1 / n)$ is an open neighborhood of $x$
-	for any $n \in \N$, it intersects $A$.
+	for any $n \in \N$, and it intersects $A$.
 \end{proof}
 \end{Verbatim}
 			\begin{theorem}
@@ -417,7 +418,7 @@ $$ sum_{i=0}^{n} | $$
 			\begin{proof}
 				Assume $x \in \Cl A$.
 				Note that $B(x, 1 / n)$ is an open neighborhood of $x$
-				for any $n \in \N$, it intersects $A$.
+				for any $n \in \N$, and it intersects $A$.
 			\end{proof}
 	\end{itemize}
 \end{itemize}
