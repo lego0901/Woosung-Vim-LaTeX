@@ -179,18 +179,20 @@ au FileType tex nmap <leader>Proof a\begin{proof}<CR>\end{proof}<<-->><Esc>O
 
 
 " Braces
-" \Brace(, \Brace{, \Brace[, \Brace. : (), {}, [], {
+" \Brace(, \Brace{, \Brace[, \Brace., \Brace| : (), {}, [], {, ||
 " \Bracec, \Bracef : ceil, floor
 au FileType tex imap <leader>Brace( \left(  \right)<<-->><Esc>13hi
 au FileType tex imap <leader>Brace{ \left\{  \right\}<<-->><Esc>14hi
 au FileType tex imap <leader>Brace[ \left[  \right]<<-->><Esc>13hi
 au FileType tex imap <leader>Brace. \left\{  \right.<<-->><Esc>13hi
+au FileType tex imap <leader>Brace\| \left\|  \right\|<<-->><Esc>13hi
 au FileType tex imap <leader>Bracec \lceil  \rceil<<-->><Esc>12hi
 au FileType tex imap <leader>Bracef \lfloor  \rfloor<<-->><Esc>13hi
 au FileType tex nmap <leader>Brace( a\left(  \right)<<-->><Esc>13hi
 au FileType tex nmap <leader>Brace{ a\left\{  \right\}<<-->><Esc>14hi
 au FileType tex nmap <leader>Brace[ a\left[  \right]<<-->><Esc>13hi
 au FileType tex nmap <leader>Brace. a\left\{  \right.<<-->><Esc>13hi
+au FileType tex nmap <leader>Brace\| a\left\|  \right\|<<-->><Esc>13hi
 au FileType tex nmap <leader>Bracec a\lceil  \rceil<<-->><Esc>12hi
 au FileType tex nmap <leader>Bracef a\lfloor  \rfloor<<-->><Esc>13hi
 
