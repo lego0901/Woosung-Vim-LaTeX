@@ -3,15 +3,16 @@
 """"""""""""""""""""""""""""" FOR VIM """""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+au Filetype tex set tw=80
 au FileType tex let TEXMF = "~/.texmf/tex/latex/"
 
 "compiliation shortcuts and indentations
 au FileType tex nmap <F3> :w<CR> :! cd $(dirname %) && pdflatex $(basename %) > /tmp/.o.out<CR>
 au FileType tex nmap <C-F3> :w<CR> :! gnome-terminal -x sh -c 'cd $(dirname %) && pdflatex $(basename %) && exit; exec bash'<CR>
-au FileType tex nmap <F4> :! gopen %<.pdf &<CR>
+au FileType tex nmap <F4> :! okular %<.pdf &<CR>
 au FileType tex imap <F3> <Esc>:w<CR> :! cd $(dirname %) && pdflatex $(basename %) > /tmp/.o.out<CR>
 au FileType tex imap <C-F3> <Esc>:w<CR> :! gnome-terminal -x sh -c 'cd $(dirname %) && pdflatex $(basename %) && exit; exec bash'<CR>
-au FileType tex imap <F4> <Esc>:! gopen %<.pdf &<CR><CR>
+au FileType tex imap <F4> <Esc>:! okular %<.pdf &<CR><CR>
 au FileType tex nmap <F5> :bo 40vs /tmp/.o.out<CR>
 au FileType tex imap <F5> <Esc>:bo 40vs /tmp/.o.out<CR>
 function! Base()
@@ -21,6 +22,11 @@ function! Base()
 endfunction
 au FileType tex set indentexpr&
 au FileType tex set nocindent
+
+nmap <leader>HOME :NERDTree /home/woosung<CR>
+nmap <leader>TEXMF :NERDTree /home/woosung/.texmf/tex/latex<CR>
+
+
 
 
 
@@ -233,10 +239,8 @@ au FileType tex nmap <leader>Beamerdocument a\begin{document}<CR><CR>\framE<Back
 
 
 " Frames
-au FileType tex imap <leader>Frame \begin{frame}{}<CR><Tab><<-->><CR><Backspace>\end{frame}<<-->><Esc>2k$i
-au FileType tex imap <leader>Framet \begin{frame}{}<CR><Tab>\frametitle{<<-->>}<CR><<-->><CR><Backspace>\end{frame}<<-->><Esc>3k$i
-au FileType tex nmap <leader>Frame a\begin{frame}{}<CR><Tab><<-->><CR><Backspace>\end{frame}<<-->><Esc>2k$i
-au FileType tex nmap <leader>Framet a\begin{frame}{}<CR><Tab>\frametitle{<<-->>}<CR><<-->><CR><Backspace>\end{frame}<<-->><Esc>3k$i
+au FileType tex imap <leader>Frame \begin{frame}[fragile]\frametitle{}<CR><Tab><<-->><CR><Backspace>\end{frame}<<-->><Esc>2k$i
+au FileType tex nmap <leader>Frame a\begin{frame}[fragile]\frametitle{}<CR><Tab><<-->><CR><Backspace>\end{frame}<<-->><Esc>2k$i
 
 
 " Blocks
